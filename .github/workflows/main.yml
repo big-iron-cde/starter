@@ -14,6 +14,6 @@ jobs:
     - name: Assert and release reset
       run: |
         mkdir bin
-        romulan src/rom.s --build -o bin/rom.bin -v
+        romulan src/rom.s --build --verbose -o bin/rom.bin
         romulan hardware upload bin/rom.bin --verbose
         romulan hardware capture --max-cycles 500
