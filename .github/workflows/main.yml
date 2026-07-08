@@ -13,5 +13,7 @@ jobs:
         fetch-depth: 0
     - name: Assert and release reset
       run: |
-        romulan src/rom.s --build --upload -v
+        mkdir bin
+        romulan src/rom.s --build -o bin/rom.bin -v
+        romulan hardware upload bin/rom.bin --verbose
         romulan hardware capture --max-cycles 500
