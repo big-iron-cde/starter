@@ -1,0 +1,23 @@
+# Build artifacts
+build/
+*.o
+*.bin
+*.prg
+*.rom
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Emulator files
+*.sav
+*.st0
+*.st1
+
