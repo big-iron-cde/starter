@@ -20,4 +20,4 @@ jobs:
         romulan hardware upload bin/rom.bin --verbose
     - name: Execute program
       run: |
-        romulan hardware capture --max-cycles 500 --timeout 45 --verbose
+        romulan hardware capture --max-cycles 500 --verbose
