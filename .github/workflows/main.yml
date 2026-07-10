@@ -16,4 +16,4 @@ jobs:
         mkdir bin
         romulan src/rom.s --build -o bin/rom.bin
         romulan hardware upload bin/rom.bin --verbose
-        romulan hardware capture --max-cycles 500
+        romulan hardware capture --max-cycles 500 --timeout 45
