@@ -11,9 +11,13 @@ jobs:
     - uses: actions/checkout@v7.0.0
       with:
         fetch-depth: 0
-    - name: Assert and release reset
+    - name: Build ROM
       run: |
         mkdir bin
         romulan src/rom.s --build -o bin/rom.bin
+    - name: Upload ROM
+      run: |
         romulan hardware upload bin/rom.bin --verbose
+    - name: Execute program
+      run: |
         romulan hardware capture --max-cycles 500 --timeout 45
