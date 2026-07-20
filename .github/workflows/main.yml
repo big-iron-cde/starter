@@ -21,7 +21,7 @@ jobs:
         romulan src/${{ matrix.type }}.s --build -o bin/rom.bin
     - name: Upload ROM
       run: |
-        romulan hardware upload bin/rom.bin --verbose
+        romulan hardware upload bin/rom.bin
     - name: Execute program
       run: |
-        romulan hardware capture --max-cycles 500 --verbose --timeout 1
+        romulan hardware capture
