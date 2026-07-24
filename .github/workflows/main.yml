@@ -10,7 +10,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        type: [byte, asm]
+        type: [byte.s, asm.S]
     steps:
     - uses: actions/checkout@v7.0.0
       with:
@@ -18,7 +18,7 @@ jobs:
     - name: Build ROM
       run: |
         mkdir bin
-        romulan src/${{ matrix.type }}.s --build -o bin/rom.bin
+        romulan src/${{ matrix.type }} --build -o bin/rom.bin
     - name: Upload ROM
       run: |
         romulan hardware upload bin/rom.bin
