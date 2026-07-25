@@ -4,14 +4,17 @@
         .org $8000
 
 reset:
-        SED
-        LDA #$10
-        ADC #$10
-        STA $4000
-        STP
+        CLC             ; clear carry flag
+        LDA #$05        ; A = $05 (1st number)
+        ADC #$0A        ; A = $05 + $0A = $0F (add 2nd number)
+        ADC #$0F        ; A = $0F + $0F = $1E (add 3rd number)
+        STA $0200       ; RAM $0200 = $1E (stash partial sum)
+        LDA #$14        ; A = $14 (load 4th number)
+        ADC $0200       ; A = $14 + $1E = $32 (add partial sum from RAM)
+        STA $4000       ; write $32 to $4000 (final result)
+        STP             ; halt processor
 
 ; Interrupt vectors (ROM offset $7FFC = CPU $FFFC)
         .org $FFFC
         .word reset     ; reset vector ($FFFC-$FFFD) -> $8000
         .word reset     ; IRQ/BRK vector ($FFFE-$FFFF) -> $8000
-
