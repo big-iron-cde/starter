@@ -4,8 +4,9 @@
         .org $8000
 
 reset:
-        LDA #$05
-        ADC #$05
+        SED
+        LDA #$10
+        ADC #$10
         STA $4000
         STP
 
