@@ -1,5 +1,5 @@
 0x0000   0xA9   ; LDA immediate — load test value
-0x0001   0xAA   ; Value: $AA
+0x0001   0x55   ; Value: $55
 0x0002   0x8D   ; STA absolute — store to RAM
 0x0003   0x00   ; Address low byte: $00
 0x0004   0x02   ; Address high byte: $02 (target: $0200)
