@@ -6,7 +6,7 @@
 reset:
         LDA #$05
         CLC
-        ADC #$0A      ← ADC IMMEDIATE, not absolute
+        ADC #$0A       ; ADC IMMEDIATE, not absolute
         STA $4000
         STP            ; halt processor
 
