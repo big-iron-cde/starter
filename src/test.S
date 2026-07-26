@@ -4,9 +4,12 @@
         .org $8000
 
 reset:
+        LDA #$0A
+        STA $4010
         LDA #$05
         CLC
-        ADC #$0A      ; ADC immediate, NOT from RAM
+        ADC $4010      ; ADC from RAM
+        STA $4005
         STA $4000
         STP            ; halt processor
 
