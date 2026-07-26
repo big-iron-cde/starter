@@ -4,7 +4,7 @@
         .org $8000
 
 reset:
-        LDA #$05
+        LDA #$0A
         CLC
         ADC #$0A       ; ADC IMMEDIATE, not absolute
         STA $4000
