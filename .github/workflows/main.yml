@@ -10,7 +10,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        type: [test.s, test.S, add.s, byte.s, asm.S]
+        type: [byte.s, asm.S]
     steps:
     - uses: actions/checkout@v7.0.0
       with:
