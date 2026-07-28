@@ -5,18 +5,20 @@
 0x0004   0x0A   ; Value: $0A
 0x0005   0x69   ; ADC immediate — add 3rd number
 0x0006   0x0F   ; Value: $0F
-0x0007   0x8D   ; STA absolute — store partial sum to RAM
-0x0008   0x00   ; Address low byte: $00
-0x0009   0x02   ; Address high byte: $02 (target: $0200)
-0x000A   0xA9   ; LDA immediate — load 4th number
-0x000B   0x14   ; Value: $14
-0x000C   0x6D   ; ADC absolute — add partial sum from RAM
-0x000D   0x00   ; Address low byte: $00
-0x000E   0x02   ; Address high byte: $02 (source: $0200)
-0x000F   0x8D   ; STA absolute — write final result
-0x0010   0x00   ; Address low byte: $00
-0x0011   0x40   ; Address high byte: $40 (target: $4000)
-0x0012   0xDB   ; STP — halt processor
+0x0007   0xAA   ; TAX — transfer partial sum to index X
+0x0008   0x9D   ; STA absolute,X — store partial sum to calculated RAM location ($0200 + X)
+0x0009   0x00   ; Base address low byte: $00
+0x000A   0x02   ; Base address high byte: $02 (base: $0200)
+0x000B   0xA9   ; LDA immediate — load 4th number
+0x000C   0x14   ; Value: $14
+0x000D   0x7D   ; ADC absolute,X — add partial sum from calculated RAM location ($0200 + X)
+0x000E   0x00   ; Base address low byte: $00
+0x000F   0x02   ; Base address high byte: $02 (base: $0200)
+0x0010   0xA8   ; TAY — transfer final result to index Y
+0x0011   0x99   ; STA absolute,Y — write final result to calculated location ($4000 + Y)
+0x0012   0x00   ; Base address low byte: $00
+0x0013   0x40   ; Base address high byte: $40 (base: $4000)
+0x0014   0xDB   ; STP — halt processor
 0x7FFC   0x00   ; Reset vector low byte
 0x7FFD   0x80   ; Reset vector high byte ($8000)
 0x7FFE   0x00   ; IRQ/BRK vector low byte
