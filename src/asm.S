@@ -1,13 +1,17 @@
 ; Translated from src/byte.s (raw byte listing) to 6502 assembly.
 ; ROM maps to CPU address $8000; reset and IRQ vectors point there.
 ; Writes target random RAM locations in pages $02 and $03, offset by a
-; byte read from uninitialized RAM at $3FFF.
+; 1-byte PRNG state maintained at $0400.
 
         .org $8000
 
 reset:
-        LDA $3FFF       ; read random offset from uninitialized RAM
-        TAX             ; X = random offset ($00-$FF)
+        LDA $0400       ; read previous PRNG state from RAM
+        CLC             ; clear carry for clean addition
+        ADC #$25        ; advance state (period 256 in 8 bits)
+        STA $0400       ; write updated state back to RAM
+        TAX             ; X = new pseudo-random offset ($00-$FF)
+
         CLC             ; clear carry flag
         LDA #$05        ; A = $05 (1st number)
         ADC #$0A        ; A = $05 + $0A = $0F (add 2nd number)
